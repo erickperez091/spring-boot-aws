@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: aws-service
+
+cloud:
+  aws:
+    sdk:
+      version: V2
+    s3Endpoint: s3.localhost.localstack.cloud:4566
+    bucketName: documents
+    region: us-east-1
+    credentials:
+      accessKey: foobar
+      secretKey: foobar

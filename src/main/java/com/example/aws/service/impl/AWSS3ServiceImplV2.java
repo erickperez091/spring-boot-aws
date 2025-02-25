@@ -1,0 +1,46 @@
+package com.example.aws.service.impl;
+
+import com.example.aws.config.AbstractAwsConfig;
+import com.example.aws.service.DocumentService;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.PutObjectRequest;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+@ConditionalOnProperty(name = "cloud.aws.sdk.version", havingValue = "V2")
+@Service
+public class AWSS3ServiceImplV2 implements DocumentService {
+
+    private final AbstractAwsConfig awsS3Config;
+    private final S3Client s3Client;
+
+    public AWSS3ServiceImplV2( AbstractAwsConfig awsS3Config, S3Client s3Client ) {
+        this.awsS3Config = awsS3Config;
+        this.s3Client = s3Client;
+    }
+
+    @Override
+    public void uploadDocument( String fileName, MultipartFile file ) throws IOException {
+        Map< String, String > metadataMap = new HashMap< String, String >();
+
+        PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+                .bucket(awsS3Config.getBucketName() )
+                .key( fileName )
+                .metadata( metadataMap )
+                .build();
+
+        s3Client.putObject( putObjectRequest, RequestBody.fromInputStream( file.getInputStream(), file.getSize() ) );
+    }
+
+    @Override
+    public ByteArrayOutputStream downloadDocument( String documentId ) throws IOException {
+        return null;
+    }
+}
