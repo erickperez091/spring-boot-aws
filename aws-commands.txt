@@ -1,0 +1,14 @@
+## create sns topic 
+aws --profile=localstack sns create-topic --name=notification --endpoint-url=http://localhost:4566
+
+## create sqs queue 
+aws --profile=localstack sqs create-queue --queue-name=notification-queue-sns --endpoint-url=http://localhost:4566
+
+## list sns topic subscriptions 
+aws --profile=localstack sns list-subscriptions --endpoint-url=http://localhost:4566
+
+## get Queue ARN SQS
+aws --profile=localstack sqs get-queue-attributes --queue-url=http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/notification-queue-sns --attribute-names=QueueArn --endpoint-url=http://localhost:4566
+
+## subscribe sqs to sns topic 
+aws --profile=localstack sns subscribe --topic-arn=arn:aws:sns:us-east-1:000000000000:notification --protocol=sqs --notification-endpoint=arn:aws:sqs:us-east-1:000000000000:notification-queue-sns --endpoint-url=http://localhost:4566

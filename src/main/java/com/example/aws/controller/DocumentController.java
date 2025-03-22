@@ -30,7 +30,6 @@ public class DocumentController {
             produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<String> uploadDocument( @RequestParam("file") MultipartFile file) throws IOException {
         documentService.uploadDocument( file.getOriginalFilename(), file);
-        System.out.println(file.getOriginalFilename());
         return ResponseEntity.ok(file.getOriginalFilename());
     }
 

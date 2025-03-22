@@ -39,8 +39,6 @@ public class AWSS3ServiceImplV1 implements DocumentService {
         metadata.setContentType( file.getContentType() );
         metadata.setContentLength( file.getSize() );
         PutObjectResult result = s3Client.putObject( awsS3Config.getBucketName(), fileName, file.getInputStream(), metadata );
-
-
     }
 
     @Override

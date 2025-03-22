@@ -14,9 +14,12 @@ public class AbstractAwsConfig {
     @Value( "${cloud.aws.region}" )
     private String region;
 
-    @Value( "${cloud.aws.bucketName}")
+    @Value( "${cloud.aws.s3.bucketName}")
     private String bucketName;
 
-    @Value( "${cloud.aws.s3Endpoint}" )
+    @Value( "${cloud.aws.s3.s3endpoint}" )
     private String s3Endpoint;
+
+    @Value( "${cloud.aws.url}" )
+    private String awsUrl;
 }

@@ -1,13 +1,5 @@
 package com.example.aws.config;
 
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.client.builder.AwsClientBuilder;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import lombok.Data;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +12,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @ConditionalOnProperty(name = "cloud.aws.sdk.version", havingValue = "V2")
-@Configuration
+@Configuration(value = "AWSS3ConfigV2")
 public class AWSS3ConfigV2 extends AbstractAwsConfig {
 
     @Bean

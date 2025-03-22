@@ -6,9 +6,16 @@ cloud:
   aws:
     sdk:
       version: V2
-    s3Endpoint: s3.localhost.localstack.cloud:4566
-    bucketName: documents
     region: us-east-1
+    url: localhost.localstack.cloud:4566
     credentials:
       accessKey: foobar
       secretKey: foobar
+    s3:
+      bucketName: documents
+      s3endpoint: s3.localhost.localstack.cloud:4566
+    sns:
+      topicARN: arn:aws:sns:us-east-1:000000000000:notification
+    sqs:
+      queueURL: http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/notification-queue-sns
+      messageKey: Message
