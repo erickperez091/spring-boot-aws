@@ -9,23 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>aws</artifactId>
+	<artifactId>spring-boot-aws</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-boot-aws</name>
 	<description>AWS Application</description>
 	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
 	<properties>
 		<java.version>23</java.version>
 		<lombok.version>1.18.36</lombok.version>
