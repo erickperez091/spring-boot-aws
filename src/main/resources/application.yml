@@ -5,7 +5,7 @@ spring:
 cloud:
   aws:
     sdk:
-      version: V2
+      version: ${CLOUD_AWS_SDK_VERSION:}
     region: us-east-1
     url: localhost.localstack.cloud:4566
     credentials:

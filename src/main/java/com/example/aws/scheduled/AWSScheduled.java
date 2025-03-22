@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import software.amazon.awssdk.services.sqs.SqsClient;
@@ -14,6 +15,7 @@ import software.amazon.awssdk.services.sqs.model.Message;
 import java.util.List;
 
 @Component
+@ConditionalOnProperty(name = "cloud.aws.sdk.version", havingValue = "V2")
 public class AWSScheduled {
 
     Logger logger = LoggerFactory.getLogger(AWSScheduled.class);

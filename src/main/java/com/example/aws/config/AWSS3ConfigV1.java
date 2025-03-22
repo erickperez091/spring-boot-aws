@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @ConditionalOnProperty(name = "cloud.aws.sdk.version", havingValue = "V1")
-@Configuration
+@Configuration( value = "AWSS3ConfigV1" )
 public class AWSS3ConfigV1 extends AbstractAwsConfig{
 
     @Bean

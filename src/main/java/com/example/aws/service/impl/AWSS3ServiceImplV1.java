@@ -13,6 +13,7 @@ import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.IOUtils;
 import com.example.aws.config.AbstractAwsConfig;
 import com.example.aws.service.DocumentService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class AWSS3ServiceImplV1 implements DocumentService {
     private final AbstractAwsConfig awsS3Config;
     private final AmazonS3 s3Client;
 
-    public AWSS3ServiceImplV1( AbstractAwsConfig awsS3Config, AmazonS3 s3Client ) {
+    public AWSS3ServiceImplV1( @Qualifier("AWSS3ConfigV1") AbstractAwsConfig awsS3Config, AmazonS3 s3Client ) {
         this.awsS3Config = awsS3Config;
         this.s3Client = s3Client;
     }
