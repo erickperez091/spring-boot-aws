@@ -28,6 +28,7 @@ public class AWSSQSConfig extends AbstractAwsConfig {
     private String queueName;
 
 
+
     @Bean
     public SqsClient sqsClient() {
         String endpoint = String.format( "%s://%s", "http", this.getAwsUrl() );

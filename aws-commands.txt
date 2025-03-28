@@ -12,3 +12,13 @@ aws --profile=localstack sqs get-queue-attributes --queue-url=http://sqs.us-east
 
 ## subscribe sqs to sns topic 
 aws --profile=localstack sns subscribe --topic-arn=arn:aws:sns:us-east-1:000000000000:notification --protocol=sqs --notification-endpoint=arn:aws:sqs:us-east-1:000000000000:notification-queue-sns --endpoint-url=http://localhost:4566
+
+## create lambda function
+aws --profile=localstack lambda create-function --function-name localstack-lambda-with-sqs-trigger --runtime java21 --role arn:aws:iam::000000000000:role/example-lambda-noop-role --handler localstack-lambda-with-sqs-trigger.SQSQueueHandler --zip-file fileb:///Users/erick/Documents/Workspace/Personal/Java/aws/spring-aws-lambda/target/spring-aws-lambda-0.0.1-SNAPSHOT.jar --timeout 120 --endpoint-url=http://localhost:4566
+
+
+## configure source for lambda
+aws --profile=localstack lambda create-event-source-mapping --function-name=localstack-lambda-with-sqs-trigger --batch-size 10 --event-source-arn arn:aws:sqs:us-east-1:000000000000:notification-queue-sns --endpoint-url=http://localhost:4566
+
+
+aws --profile localstack sqs send-message  --queue-url=http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/notification-queue-sns --message-body 'Hello, Gwen' --endpoint-url=http://localhost:4566

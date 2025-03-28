@@ -1,0 +1,11 @@
+Resources:
+  Function:
+    Type: AWS::Serverless::Function
+    Properties:
+      Timeout: 300
+      MemorySize: 128
+      Handler: com.example.lambda.SQSQueueHandler::handleRequest
+      CodeUri: /Users/erick/Documents/Workspace/Personal/Java/aws/spring-aws-lambda
+      Runtime: java21
+      Architectures:
+        - arm64
