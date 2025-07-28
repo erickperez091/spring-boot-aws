@@ -31,7 +31,7 @@ public class AWSScheduled {
         this.awsSQSConfig = awsSQSConfig;
     }
 
-    @Scheduled( cron = "0 */30 * * * *")
+    @Scheduled( cron = "0 */1 * * * *")
     public void readMessage( ) {
         logger.info( "[START].[AWSScheduled].[readMessage]:Reading messages from sqs queue" );
         List< Message > messages = this.awsSQSConfig.getMessages( sqsClient );
