@@ -36,11 +36,11 @@ public class AWSScheduled {
         logger.info( "[START].[AWSScheduled].[readMessage]:Reading messages from sqs queue" );
         List< Message > messages = this.awsSQSConfig.getMessages( sqsClient );
         messages.forEach( message -> {
-            logger.info( "[START].[AWSScheduled].[readMessage]:Processing message: " + message.messageId() );
+            logger.info("[START].[AWSScheduled].[readMessage]:Processing message: {}", message.messageId());
             JSONObject object = new JSONObject( message.body() );
             System.out.println( object.has( messageKey ) ? object.getString( messageKey ) : "Not Present" );
             awsSQSConfig.deleteMessage( sqsClient, message );
-            logger.info( "[END].[AWSScheduled].[readMessage]:Processing message: " + message.messageId() );
+            logger.info("[END].[AWSScheduled].[readMessage]:Processing message: {}", message.messageId());
         } );
         logger.info( "[END].[AWSScheduled].[readMessage]:Reading messages from sqs queue" );
     }
